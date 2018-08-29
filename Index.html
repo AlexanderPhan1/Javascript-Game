@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Are you Psychic?</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="contents/css/style.css">  
+</head>
+
+<body>
+
+  <h1>Are you a Psychic?</h1>
+    <br>
+    <br>
+    <br>
+  <p>Wins: <span id ="wins"></span></p>
+  <p>Losses: <span id ="Losses"></span></p>
+
+  <p>Guesses done:<span id =></span></p>
+
+  <p>Guess what the computer has selected.</p>
+  <script type="text/javascript">
+
+    // VARIABLES
+    // ==========================================================================
+
+    // The array of questions for our quiz game.
+
+    // We start the game with a score of 0.
+    var wins = 0;
+
+    var Losses= 0;
+
+    var letters =
+    ("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
+    ,"r","s","t","u","v","w","x","y","z");
+
+    var letter = letters[Math.floor(Math.random()*letters.length)];
+    // Variable to hold the index of current question.
+    var questionIndex = 0;
+
+    var char = randLetter ();
+
+    var userInput = letters
+    // FUNCTIONS
+    // ==============================================================================
+
+    // Function to render questions.
+    function renderQuestion() {
+      // If there are still more questions, render the next one.
+      if (questionIndex <= (questions.length - 1)) {
+        document.querySelector("#question").innerHTML = questions[questionIndex].q;
+      }
+      // If there aren't, render the end game screen.
+      else {
+        document.querySelector("#question").innerHTML = "Game Over!";
+        document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
+      }
+    }
+
+    // Function that updates the score...
+    function updateScore() {
+      document.querySelector("#score").innerHTML = "Score: " + score;
+    }
+    var userInput = event.key.toLowerCase();
+    function randLetter() {
+
+    var letters =
+    ("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
+    ,"r","s","t","u","v","w","x","y","z");
+
+    var letter = letters[Math.floor(Math.random()*letters.length)];
+
+    return letter
+
+    }
+    if(userInput === letters){
+        alert("Correct!");
+        score++;
+        updateScore();
+
+    }
+
+    else{
+
+
+    }
+
+    // MAIN PROCESS
+    // ==============================================================================
+
+    // Calling functions to start the game.
+    randLetter();
+    updateScore();
+
+    // When the user presses a key, it will run the following function...
+    document.onkeyup = function(event) {
+
+      // If there are no more questions, stop the function.
+      if (questionIndex === questions.length) {
+        return;
+      }
+
+      // Determine which key was pressed, make it lowercase, and set it to the userInput variable.
+      var userInput = event.key.toLowerCase();
+
+      // Only run this code if "t" or "f" were pressed.
+      if (userInput === "t" || userInput === "f") {
+
+        // If they guess the correct answer, increase and update score, alert them they got it right.
+        if (userInput === questions[questionIndex].a) {
+          alert("Correct!");
+          score++;
+          updateScore();
+        }
+        // If wrong, alert them they are wrong.
+        else {
+          alert("Wrong!");
+        }
+
+
+        // Increment the questionIndex variable and call the renderQuestion function.
+        questionIndex++;
+        renderQuestion();
+
+      }
+
+    };
+
+  </script>
+
+</body>
+
+</html>
